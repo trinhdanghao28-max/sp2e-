@@ -1,103 +1,59 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>SP2E Converter</title>
+    <title>SP2E Converter</title>
 
-<style>
-
-body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#f4f6fb;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    margin:0;
-}
-
-.card{
-    width:420px;
-    background:white;
-    border-radius:15px;
-    padding:30px;
-    box-shadow:0 10px 30px rgba(0,0,0,.15);
-}
-
-h1{
-    text-align:center;
-}
-
-input,button{
-    width:100%;
-    padding:12px;
-    font-size:18px;
-    margin-top:10px;
-    border-radius:10px;
-}
-
-button{
-    background:#2563eb;
-    color:white;
-    border:none;
-    cursor:pointer;
-}
-
-button:hover{
-    background:#1d4ed8;
-}
-
-#result{
-    margin-top:20px;
-    font-size:24px;
-    text-align:center;
-    font-weight:bold;
-    color:#2563eb;
-}
-
-</style>
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="card">
+    <div class="card">
 
-<h1>SP2E Converter</h1>
+        <h1>SP2E Converter</h1>
 
-<input
-id="score"
-type="number"
-step="0.01"
-placeholder="Nhập điểm SP2E">
+        <p class="subtitle">
+            Quy đổi điểm SP2E sang điểm THPT
+        </p>
 
-<button onclick="convert()">
-Quy đổi
-</button>
+        <input
+            id="score"
+            type="number"
+            step="0.01"
+            placeholder="Nhập điểm SP2E">
 
-<div id="result"></div>
+        <button onclick="convert()">
+            Quy đổi
+        </button>
 
-</div>
+        <div class="result">
 
-<script>
+            <h2>Kết quả</h2>
 
-function convert(){
+            <div id="result">
+                --
+            </div>
 
-let x=parseFloat(document.getElementById("score").value);
+        </div>
 
-if(isNaN(x)){
-alert("Nhập điểm trước!");
-return;
-}
+        <div class="detail">
 
-document.getElementById("result").innerHTML=
-"Điểm bạn nhập: "+x;
+            <h3>Chi tiết phép tính</h3>
 
-}
+            <p id="formula">
+                Chưa có dữ liệu.
+            </p>
 
-</script>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
 
 </body>
+
 </html>
