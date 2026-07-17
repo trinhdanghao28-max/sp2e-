@@ -1,0 +1,117 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.card{
+    width:420px;
+    background:#fff;
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 15px 40px rgba(0,0,0,.2);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:10px;
+    color:#2563eb;
+}
+
+.subtitle{
+    text-align:center;
+    color:#666;
+    margin-bottom:25px;
+}
+
+input,
+select,
+button{
+
+    width:100%;
+    padding:14px;
+
+    border-radius:10px;
+
+    border:1px solid #ddd;
+
+    margin-top:12px;
+
+    font-size:17px;
+
+}
+
+button{
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+button:hover{
+
+    background:#1d4ed8;
+
+}
+
+.result{
+
+    margin-top:25px;
+
+    text-align:center;
+
+}
+
+.result h2{
+
+    color:#444;
+
+    margin-bottom:10px;
+
+}
+
+#answer{
+
+    font-size:36px;
+
+    font-weight:bold;
+
+    color:#2563eb;
+
+}
+
+.detail{
+
+    margin-top:25px;
+
+    background:#f5f7fb;
+
+    padding:15px;
+
+    border-radius:10px;
+
+}
+
+#formula{
+
+    color:#444;
+
+    line-height:1.7;
+
+}
