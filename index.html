@@ -2,81 +2,197 @@
 <html lang="vi">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>SP2E Converter</title>
+    <title>HPU2 Score Converter</title>
+
+    <meta name="description"
+        content="Công cụ quy đổi điểm SP2E và điểm THPT theo bảng quy đổi tuyển sinh Đại học Sư phạm Hà Nội 2">
 
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-    <div class="card">
+    <main class="container">
 
-        <h1>🎓 SP2E Converter</h1>
+        <section class="card">
 
-        <p class="subtitle">
-            Quy đổi điểm SP2E sang điểm THPT theo quy định của HPU2
-        </p>
+            <header class="header">
 
-        <label for="score">
-            Điểm SP2E
-        </label>
+                <!-- Sau này chỉ cần thêm logo ở đây -->
+                <!-- <img src="assets/logo.png" class="logo"> -->
 
-        <input
-            id="score"
-            type="number"
-            step="0.01"
-            placeholder="Ví dụ: 24.55">
+                <h1>🎓 HPU2 Score Converter</h1>
 
-        <label for="major">
-            Tổ hợp xét tuyển
-        </label>
+                <p class="subtitle">
+                    Quy đổi điểm tuyển sinh
+                    <br>
+                    Đại học Sư phạm Hà Nội 2
+                </p>
 
-        <select id="major">
+            </header>
 
-            <option value="A00">A00</option>
+            <div class="input-group">
 
-            <option value="A01">A01</option>
+                <label for="mode">
 
-            <option value="B00">B00</option>
+                    Chế độ quy đổi
 
-            <option value="D01">D01</option>
+                </label>
 
-        </select>
+                <select id="mode">
 
-        <button onclick="convert()">
+                    <option value="sp2eToThpt">
+                        SP2E → THPT
+                    </option>
 
-            Quy đổi
+                    <option value="thptToSp2e">
+                        THPT → SP2E
+                    </option>
 
-        </button>
-
-        <div class="result">
-
-            <h2>Kết quả</h2>
-
-            <div id="result">
-
-                --
+                </select>
 
             </div>
 
-        </div>
+            <div class="input-group">
 
-        <div class="detail">
+                <label for="year">
 
-            <h3>Chi tiết phép tính</h3>
+                    Năm tuyển sinh
 
-            <p id="formula">
+                </label>
 
-                Chưa có dữ liệu.
+                <select id="year">
 
-            </p>
+                    <option value="2026">
 
-        </div>
+                        2026
 
-    </div>
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="input-group">
+
+                <label for="major">
+
+                    Tổ hợp xét tuyển
+
+                </label>
+
+                <select id="major">
+
+                    <option value="A00">A00</option>
+                    <option value="A01">A01</option>
+                    <option value="B00">B00</option>
+                    <option value="D01">D01</option>
+
+                </select>
+
+            </div>
+
+            <div class="input-group">
+
+                <label for="score">
+
+                    Điểm
+
+                </label>
+
+                <input
+
+                    id="score"
+
+                    type="number"
+
+                    step="0.01"
+
+                    inputmode="decimal"
+
+                    autocomplete="off"
+
+                    placeholder="Ví dụ: 24.55">
+
+            </div>
+
+            <button id="convertBtn" onclick="convert()">
+
+                🔄 Quy đổi điểm
+
+            </button>
+
+            <section class="result">
+
+                <h2>
+
+                    Kết quả
+
+                </h2>
+
+                <div id="result">
+
+                    --
+
+                </div>
+
+                <p id="resultText">
+
+                    Điểm tương đương sẽ hiển thị tại đây.
+
+                </p>
+
+            </section>
+
+            <section class="detail">
+
+                <h3>
+
+                    Chi tiết phép tính
+
+                </h3>
+
+                <div id="formula">
+
+                    Chưa có dữ liệu.
+
+                </div>
+
+            </section>
+
+            <footer class="footer">
+
+                <hr>
+
+                <p>
+
+                    Nguồn dữ liệu:
+                    <br>
+
+                    Bảng quy đổi điểm tuyển sinh
+                    Đại học Sư phạm Hà Nội 2 năm 2026.
+
+                </p>
+
+                <p class="note">
+
+                    Website hỗ trợ tra cứu,
+                    không phải website chính thức của HPU2.
+
+                </p>
+
+            </footer>
+
+        </section>
+
+    </main>
+
+    <script src="data.js"></script>
 
     <script src="script.js"></script>
 
