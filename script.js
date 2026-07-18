@@ -1,66 +1,115 @@
 function convert() {
 
+    const mode = document.getElementById("mode").value;
+    const year = document.getElementById("year").value;
+    const major = document.getElementById("major").value;
     const score = parseFloat(document.getElementById("score").value);
-    const group = document.getElementById("group").value;
+
+    const result = document.getElementById("result");
+    const resultText = document.getElementById("resultText");
+    const formula = document.getElementById("formula");
 
     if (isNaN(score)) {
-        alert("Vui lòng nhập điểm SP2E!");
+        alert("Vui lòng nhập điểm.");
         return;
     }
 
-    const table = SCORE_TABLES[2026][group];
+    const table = DATA[year][major];
 
-    if (!table) {
-        alert("Không tìm thấy dữ liệu tổ hợp.");
-        return;
-    }
+    let found = null;
 
-    let result = null;
+    for (let row of table) {
 
-    for (const row of table) {
+        if (mode === "sp2eToThpt") {
 
-        if (score >= row.sp2eMin && score <= row.sp2eMax) {
+            if (score >= row.sp2e[0] && score <= row.sp2e[1]) {
+                found = row;
+                break;
+            }
 
-            result =
-                row.thptMin +
-                ((score - row.sp2eMin) *
-                    (row.thptMax - row.thptMin)) /
-                (row.sp2eMax - row.sp2eMin);
+        } else {
 
-            break;
+            if (score >= row.thpt[0] && score <= row.thpt[1]) {
+                found = row;
+                break;
+            }
+
         }
 
     }
 
-    const resultDiv = document.getElementById("result");
+    if (!found) {
 
-    if (result === null) {
+        result.innerHTML = "--";
 
-        resultDiv.innerHTML =
-            "<span style='color:red'>Điểm nằm ngoài khoảng quy đổi.</span>";
+        resultText.innerHTML =
+            "Điểm nằm ngoài phạm vi quy đổi.";
+
+        formula.innerHTML =
+            "Không có dữ liệu.";
 
         return;
+
     }
 
-    resultDiv.innerHTML = `
-        <h2>Kết quả</h2>
+    let a, b, c, d;
 
-        <p>
-            Điểm SP2E:
-            <b>${score.toFixed(2)}</b>
-        </p>
+    if (mode === "sp2eToThpt") {
 
-        <p>
-            Tổ hợp:
-            <b>${group}</b>
-        </p>
+        a = found.sp2e[0];
+        b = found.sp2e[1];
 
-        <p>
-            Điểm THPT tương đương:
-            <b style="color:#c8102e;font-size:30px;">
-                ${result.toFixed(2)}
-            </b>
-        </p>
+        c = found.thpt[0];
+        d = found.thpt[1];
+
+    } else {
+
+        a = found.thpt[0];
+        b = found.thpt[1];
+
+        c = found.sp2e[0];
+        d = found.sp2e[1];
+
+    }
+
+    const y =
+        ((d - c) / (b - a)) *
+        (score - a) +
+        c;
+
+    result.innerHTML =
+        y.toFixed(2);
+
+    resultText.innerHTML =
+        mode === "sp2eToThpt"
+            ? "Điểm THPT tương đương"
+            : "Điểm SP2E tương đương";
+
+    formula.innerHTML = `
+        Công thức nội suy của HPU2:
+        <br><br>
+
+        y =
+        ((${d} − ${c}) / (${b} − ${a}))
+        ×
+        (${score} − ${a})
+        +
+        ${c}
+
+        <br><br>
+
+        <b>= ${y.toFixed(2)}</b>
+
+        <hr>
+
+        Khoảng quy đổi:
+
+        <br>
+
+        ${mode === "sp2eToThpt"
+            ? `SP2E: ${a} → ${b}<br>THPT: ${c} → ${d}`
+            : `THPT: ${a} → ${b}<br>SP2E: ${c} → ${d}`
+        }
     `;
 
 }
