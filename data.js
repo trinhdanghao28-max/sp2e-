@@ -1,57 +1,53 @@
-const SCORE_TABLES = {
+const DATA = {
+  "2026": {
+    A00: [
+      { thpt: [27.75, 30.00], sp2e: [25.24, 30.00] },
+      { thpt: [22.85, 27.75], sp2e: [18.29, 25.24] },
+      { thpt: [18.95, 22.85], sp2e: [14.60, 18.29] },
+      { thpt: [15.00, 18.95], sp2e: [10.96, 14.60] }
+    ],
 
-    2026: {
+    A01: [
+      { thpt: [26.26, 30.00], sp2e: [25.43, 30.00] },
+      { thpt: [18.34, 26.26], sp2e: [17.13, 25.43] },
+      { thpt: [15.00, 18.34], sp2e: [13.61, 17.13] }
+    ],
 
-        A00: [
-            { sp2eMin:25.24, sp2eMax:30.00, thptMin:27.75, thptMax:30.00 },
-            { sp2eMin:18.29, sp2eMax:25.24, thptMin:22.85, thptMax:27.75 },
-            { sp2eMin:14.60, sp2eMax:18.29, thptMin:18.95, thptMax:22.85 },
-            { sp2eMin:10.96, sp2eMax:14.60, thptMin:15.00, thptMax:18.95 }
-        ],
+    B00: [
+      { thpt: [27.74, 30.00], sp2e: [22.77, 30.00] },
+      { thpt: [19.27, 27.74], sp2e: [13.41, 22.77] },
+      { thpt: [15.00, 19.27], sp2e: [10.02, 13.41] }
+    ],
 
-        A01: [
-            { sp2eMin:25.43, sp2eMax:30.00, thptMin:26.26, thptMax:30.00 },
-            { sp2eMin:17.13, sp2eMax:25.43, thptMin:18.34, thptMax:26.26 },
-            { sp2eMin:13.61, sp2eMax:17.13, thptMin:15.00, thptMax:18.34 }
-        ],
+    B03: [
+      { thpt: [25.31, 30.00], sp2e: [19.08, 30.00] },
+      { thpt: [19.75, 25.31], sp2e: [14.23, 19.08] },
+      { thpt: [15.00, 19.75], sp2e: [10.48, 14.23] }
+    ],
 
-        B00: [
-            { sp2eMin:22.77, sp2eMax:30.00, thptMin:27.74, thptMax:30.00 },
-            { sp2eMin:13.41, sp2eMax:22.77, thptMin:19.27, thptMax:27.74 },
-            { sp2eMin:10.02, sp2eMax:13.41, thptMin:15.00, thptMax:19.27 }
-        ],
+    C00: [
+      { thpt: [28.00, 30.00], sp2e: [25.94, 30.00] },
+      { thpt: [24.75, 28.00], sp2e: [22.95, 25.94] },
+      { thpt: [20.00, 24.75], sp2e: [19.37, 22.95] },
+      { thpt: [15.00, 20.00], sp2e: [12.86, 19.37] }
+    ],
 
-        B03: [
-            { sp2eMin:19.08, sp2eMax:30.00, thptMin:25.31, thptMax:30.00 },
-            { sp2eMin:14.23, sp2eMax:19.08, thptMin:19.75, thptMax:25.31 },
-            { sp2eMin:10.48, sp2eMax:14.23, thptMin:15.00, thptMax:19.75 }
-        ],
+    D01: [
+      { thpt: [26.00, 30.00], sp2e: [23.76, 30.00] },
+      { thpt: [20.00, 26.00], sp2e: [17.76, 23.76] },
+      { thpt: [15.00, 20.00], sp2e: [11.92, 17.76] }
+    ],
 
-        C00: [
-            { sp2eMin:25.94, sp2eMax:30.00, thptMin:28.00, thptMax:30.00 },
-            { sp2eMin:22.95, sp2eMax:25.94, thptMin:24.75, thptMax:28.00 },
-            { sp2eMin:19.37, sp2eMax:22.95, thptMin:20.00, thptMax:24.75 },
-            { sp2eMin:12.86, sp2eMax:19.37, thptMin:15.00, thptMax:20.00 }
-        ],
+    D14: [
+      { thpt: [27.00, 30.00], sp2e: [25.96, 30.00] },
+      { thpt: [20.25, 27.00], sp2e: [19.79, 25.96] },
+      { thpt: [15.00, 20.25], sp2e: [12.87, 19.79] }
+    ],
 
-        D01: [
-            { sp2eMin:23.76, sp2eMax:30.00, thptMin:26.00, thptMax:30.00 },
-            { sp2eMin:17.76, sp2eMax:23.76, thptMin:20.00, thptMax:26.00 },
-            { sp2eMin:11.92, sp2eMax:17.76, thptMin:15.00, thptMax:20.00 }
-        ],
-
-        D14: [
-            { sp2eMin:25.96, sp2eMax:30.00, thptMin:27.00, thptMax:30.00 },
-            { sp2eMin:19.79, sp2eMax:25.96, thptMin:20.25, thptMax:27.00 },
-            { sp2eMin:12.87, sp2eMax:19.79, thptMin:15.00, thptMax:20.25 }
-        ],
-
-        X70: [
-            { sp2eMin:24.83, sp2eMax:30.00, thptMin:26.85, thptMax:30.00 },
-            { sp2eMin:19.07, sp2eMax:24.83, thptMin:19.90, thptMax:26.85 },
-            { sp2eMin:14.73, sp2eMax:19.07, thptMin:15.00, thptMax:19.90 }
-        ]
-
-    }
-
+    X70: [
+      { thpt: [26.85, 30.00], sp2e: [24.83, 30.00] },
+      { thpt: [19.90, 26.85], sp2e: [19.07, 24.83] },
+      { thpt: [15.00, 19.90], sp2e: [14.73, 19.07] }
+    ]
+  }
 };
